@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
-import Card from "../Card/Card";
+import NewsCard from "../Cards/NewsCard";
+import Card from "../Cards/Card";
 import "./LandingPage.css";
 
 const LandingPage = () => {
@@ -30,9 +31,29 @@ const LandingPage = () => {
       author: "Micheal John"
     }
   ];
+
+  const news = [
+    {
+      imgLink:
+        "https://www.irishtimes.com/polopoly_fs/1.3942790.1565937760!/image/image.jpg_gen/derivatives/box_620_330/image.jpg",
+      lang: "JAVASCRIPT",
+      title: "This an awesome title for Javascript"
+    },
+    {
+      imgLink:
+        "https://devclass.com/wp-content/uploads/2019/01/scaled-python.jpeg",
+      lang: "REACT",
+      title: "This an awesome title for React"
+    },
+    {
+      imgLink: "https://miro.medium.com/max/1200/1*y6C4nSvy2Woe0m7bWEn4BA.png",
+      lang: "PYTHON",
+      title: "This an awesome title for Python"
+    }
+  ];
   return (
     <>
-      <div className="mt-3">
+      <div className="mt-4">
         <Container fluid>
           <Row>
             <Col md={5}>
@@ -58,16 +79,28 @@ const LandingPage = () => {
               </div>
             </Col>
             <Col md={3}>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
+              <div className="d-flex justify-content-center flex-column align-items-center new-info">
+                <div className="d-flex justify-content-between align-items-end newsBtn font-weight-bold py-4">
+                  <span>New</span>
+                  <div className="nav-icon d-flex align-items-center">
+                    <button className="d-flex mr-2">
+                      <i class="material-icons">navigate_before</i>
+                    </button>
+                    <button className="d-flex">
+                      <i class="material-icons">navigate_next</i>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="d-flex justify-content-between align-items-end trend font-weight-bold py-4">
+                  <div>Trending</div>
+                  <div>Popular</div>
+                </div>
+
+                {news.map(({ imgLink, lang, title }) => (
+                  <NewsCard imgLink={imgLink} lang={lang} title={title} />
+                ))}
+              </div>
             </Col>
           </Row>
         </Container>

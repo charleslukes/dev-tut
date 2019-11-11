@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* for small text */
+.small-text {
+  font-size: 65%;
+  font-weight: 700;
+}
+
+.lang-type {
+  color: #902156;
+}
