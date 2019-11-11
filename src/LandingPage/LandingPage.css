@@ -1,0 +1,10 @@
+.col-1 {
+  height: 50px;
+  border: 1px solid;
+  color: red;
+}
+
+.contain-img {
+  /* border: 1px solid; */
+  background: #abb2b9;
+}
