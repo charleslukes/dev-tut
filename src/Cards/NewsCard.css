@@ -1,0 +1,9 @@
+.new-hold {
+  width: 250px;
+  height: 100px;
+}
+
+.img-display .img-fluid {
+  height: 100px !important;
+  width: 150px !important;
+}

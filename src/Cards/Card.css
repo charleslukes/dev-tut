@@ -1,0 +1,35 @@
+.min-card {
+  width: 200px;
+}
+
+.min-img {
+  height: 200px;
+  width: 100%;
+}
+
+.min-img .img-fluid {
+  height: inherit !important;
+}
+
+.small-text {
+  font-size: 65%;
+  font-weight: 700;
+}
+
+.lang-type {
+  color: #902156;
+}
+
+.lang-date {
+  color: #a8b3c2;
+}
+
+/* large img */
+.min-card-lg {
+  width: 100%;
+}
+
+.min-card-lg .img-fluid {
+  width: 100%;
+  height: inherit !important;
+}
