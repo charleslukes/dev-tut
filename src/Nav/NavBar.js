@@ -5,12 +5,12 @@ const NavBar = () => {
   return (
     <>
       <ul className="nav">
-        <li className="main-logo">Dev Tut</li>
+        <li className="main-logo">Dev-Tut</li>
         <li>Articles</li>
         <li>News</li>
         <li>Stories</li>
         <li>Meet a dev</li>
-        <li>
+        <li className="search-list">
           <input
             className="search-input"
             type="text"

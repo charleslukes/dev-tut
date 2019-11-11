@@ -13,7 +13,7 @@
   cursor: pointer;
 }
 
-.nav li:hover {
+.nav li:hover:not(.search-list) {
   border-bottom: 2px solid #6bca3e;
 }
 
