@@ -10,7 +10,7 @@ const NewsCard = ({ lang, title, imgLink }) => {
           <span className="small-text lang-type">#{lang}</span>
           <p>{title}</p>
         </div>
-        <div className="img-display">
+        <div className="img-display ml-1">
           <Image src={imgLink} fluid />
         </div>
       </div>

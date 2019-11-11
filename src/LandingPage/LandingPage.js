@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import NewsCard from "../Cards/NewsCard";
+import Button from "../Buttons/Button";
 import Card from "../Cards/Card";
 import "./LandingPage.css";
 
@@ -100,6 +101,8 @@ const LandingPage = () => {
                 {news.map(({ imgLink, lang, title }) => (
                   <NewsCard imgLink={imgLink} lang={lang} title={title} />
                 ))}
+
+                <Button name={"View More"} />
               </div>
             </Col>
           </Row>
