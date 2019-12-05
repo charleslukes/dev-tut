@@ -14,3 +14,7 @@
 .btn-view:focus {
   outline: none;
 }
+
+.btn-view:hover {
+  background: #ae2968;
+}
