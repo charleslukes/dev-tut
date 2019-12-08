@@ -1,0 +1,9 @@
+.stories_title {
+  font-weight: 200;
+}
+
+.all_storycards {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 20px;
+}
