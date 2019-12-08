@@ -20,11 +20,15 @@ const NavBar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/News" style={{ textDecoration: "none", color: "#000" }}>
+          <Link to="/news" style={{ textDecoration: "none", color: "#000" }}>
             News
           </Link>
         </li>
-        <li>Stories</li>
+        <li>
+          <Link to="/stories" style={{ textDecoration: "none", color: "#000" }}>
+            Stories
+          </Link>
+        </li>
         <li>Meet a dev</li>
         <li className="search-list">
           <input
