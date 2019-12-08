@@ -30,6 +30,10 @@ const Articles = () => {
                 </li>
               </li>
             </ul>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
             <div className="articles_grid">
               {card.map(({ imgLink, lang, date, title, author }) => (
                 <Card
