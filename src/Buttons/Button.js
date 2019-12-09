@@ -1,10 +1,10 @@
 import React from "react";
 import "./Button.css";
 
-const Button = ({ name }) => {
+const Button = ({ name, parentClass }) => {
   return (
     <>
-      <button className="btn-view">{name}</button>
+      <button className={`default-btn ${parentClass}`}>{name}</button>
     </>
   );
 };
