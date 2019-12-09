@@ -47,7 +47,7 @@ const LandingPage = () => {
                       <i class="material-icons">navigate_before</i>
                     </button>
                     <button className="d-flex">
-                      <i class="material-icons">navigate_next</i>
+                      <i className="material-icons">navigate_next</i>
                     </button>
                   </div>
                 </div>
@@ -61,7 +61,7 @@ const LandingPage = () => {
                   <NewsCard imgLink={imgLink} lang={lang} title={title} />
                 ))}
 
-                <Button name={"View More"} />
+                <Button name={"View More"} parentClass={"btn-view"} />
               </div>
             </Col>
           </Row>
