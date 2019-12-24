@@ -1,5 +1,6 @@
 import React from "react";
 import { Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Button from "../Buttons/Button";
 import Stack from "./Stacks";
 import "./Dev.css";
@@ -33,7 +34,12 @@ const Dev = ({ imageLink, devName, devLocation, devResume }) => {
           </div>
         </div>
         <div className="devCardBtn">
-          <Button name="View Profile" parentClass={"dev-btn"} />
+          <Link
+            to="/devprofile"
+            style={{ textDecoration: "none", color: "#000" }}
+          >
+            <Button name="View Profile" parentClass={"dev-btn"} />
+          </Link>
         </div>
       </div>
     </>
