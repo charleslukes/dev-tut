@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.6.0",
     "@material-ui/icons": "^4.5.1",
+    "@types/medium-editor": "^5.0.3",
     "bootstrap": "^4.3.1",
     "medium-editor": "^5.23.3",
     "react": "^16.9.0",

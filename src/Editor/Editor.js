@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import MediumEditor from "medium-editor";
+import "../../node_modules/medium-editor/dist/css/medium-editor.min.css";
+import "../../node_modules/medium-editor/dist/css/themes/beagle.css";
+import "./Editor.css";
 
 const Editor = () => {
   useEffect(() => {
-    new MediumEditor(/*dom, */ ".medium-editable", {
+    let editor = new MediumEditor(".medium-editable", {
       autoLink: true,
       delay: 1000,
       targetBlank: true,
@@ -20,13 +23,9 @@ const Editor = () => {
           "h4",
           "h5",
           "h6",
+          "justifyCenter",
           "strikethrough",
-          "subscript",
-          "superscript",
-          "pre",
-          "image",
-          "html",
-          "justifyCenter"
+          "image"
         ],
         diffLeft: 25,
         diffTop: 10
@@ -49,9 +48,15 @@ const Editor = () => {
         text: "Tell your story..."
       }
     });
+
+    editor.subscribe("editableInput", function(event, editable) {
+      // Do some work
+      // this grabs the content of the editlor.
+      console.log(editor.getContent(0));
+    });
   });
   return (
-    <div>
+    <div className="medium-container">
       <textarea id="medium-editable" className="medium-editable"></textarea>
     </div>
   );
