@@ -1,0 +1,53 @@
+.devCard {
+  box-shadow: 5px 10px 8px #eee;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  width: 200px;
+  margin: 10px;
+}
+.devImage {
+  width: 55px;
+  display: flex;
+  justify-content: center;
+}
+
+.devImage > img {
+  width: 50px;
+  height: 50px;
+}
+
+.devDetails {
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.devName {
+  text-transform: capitalize;
+  margin-bottom: 0;
+}
+
+.devLocation {
+  color: #a8b3c2;
+}
+
+.devStack > p {
+  margin-top: 20px;
+  font-size: 13px;
+  text-align: center;
+  color: #313335;
+}
+
+.devCardBtn {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+.dev-btn {
+  font-size: 11px;
+  font-weight: 500;
+  width: 80px;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 3px;
+}

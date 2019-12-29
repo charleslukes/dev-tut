@@ -1,0 +1,11 @@
+.default-btn {
+  background-color: #902156;
+}
+
+.default-btn:focus {
+  outline: none;
+}
+
+.default-btn:hover {
+  background: #ae2968;
+}

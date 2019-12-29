@@ -1,0 +1,33 @@
+.dev-article-display {
+  padding: 10px 15px;
+  background: #e2eaf0;
+}
+
+.dev-article-display .lang {
+  color: #902156;
+  font-size: 13px;
+}
+
+.dev-article-title {
+  font-weight: bold;
+  font-size: 18px;
+  font-family: "Khula", sans-serif;
+}
+
+.dev-article-main {
+  font-size: 14px;
+}
+
+.dev-read-more {
+  color: #902156;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dev-articles-likes > span {
+  margin: 0 15px 0 0;
+}
+
+.article-likes {
+  color: #313335;
+}
