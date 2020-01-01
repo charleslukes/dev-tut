@@ -1,22 +1,80 @@
 import React, { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
+import { useMutation } from "@apollo/react-hooks";
+import { emailRegex, nameRegex, passwordRegex } from "./validation";
+import { REGISTER_USER } from "./queries";
 import "./Sign.css";
 
 export const SignUp = props => {
-  const [email, setEmail] = useState("");
-  const [invalidEmail, setInvalidEmail] = useState(false);
+  const [login, { data, loading, error }] = useMutation(REGISTER_USER);
 
-  const handleEmailValidation = event => {
+  const [userInput, setUserInput] = useState({
+    email: "",
+    firstname: "",
+    lastname: "",
+    country: "Nigeria",
+    password: ""
+  });
+
+  const [invalidateField, setInvalidateField] = useState({
+    email: false,
+    firstname: false,
+    lastname: false,
+    password: false,
+    formInvalid: false
+  });
+
+  const handleUserInput = event => {
     const value = event.target.value;
-    setEmail(value);
+    const name = event.target.name;
 
-    /* eslint-disable */
-    const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!regex.test(value)) {
-      setInvalidEmail(true);
+    // validate function
+    const validateField = (regex, field, value) => {
+      if (!regex.test(value)) {
+        setInvalidateField({ ...invalidateField, [field]: true });
+      }
+
+      if (regex.test(value)) {
+        setInvalidateField({ ...invalidateField, [field]: false });
+        // updates the email field
+        setUserInput({
+          ...userInput,
+          [name]: value
+        });
+      }
+    };
+
+    // validate fields
+    if (name === "firstname") {
+      validateField(nameRegex, "firstname", value);
     }
-    if (regex.test(value)) {
-      setInvalidEmail(false);
+
+    if (name === "lastname") {
+      validateField(nameRegex, "lastname", value);
+    }
+
+    if (name === "email") {
+      validateField(emailRegex, "email", value);
+    }
+
+    if (name === "password") {
+      validateField(passwordRegex, "password", value);
+    }
+  };
+
+  const onSubmitValue = e => {
+    e.preventDefault();
+
+    if (Object.values(userInput).includes("")) {
+      return;
+    } else {
+      login({ variables: userInput });
+
+      // reassign value to default
+      for (const value in userInput) {
+        if (value !== "country") userInput[value] = "";
+      }
+      console.log(data, loading, error);
     }
   };
 
@@ -33,19 +91,46 @@ export const SignUp = props => {
           <h4 className="mt-0 mb-4">Dev Tut</h4>
 
           {/* collect the user details */}
-          <Form className="d-flex justify-content-center align-items-center flex-column">
+          <Form
+            className="d-flex justify-content-center align-items-center flex-column"
+            onSubmit={onSubmitValue}
+          >
             <Form.Group controlId="formGridFirstName1">
               <Form.Control
                 placeholder="First Name"
-                className="signInputStyle"
+                required
+                name="firstname"
+                className={`signInputStyle ${
+                  invalidateField.firstname ? "invalidFieldStyle" : ""
+                }`}
+                onChange={handleUserInput}
               />
+              <div>
+                <small className="errorFormText">
+                  {invalidateField.firstname
+                    ? "must be at least three letters"
+                    : ""}
+                </small>
+              </div>
             </Form.Group>
 
             <Form.Group controlId="formGridLasttName1">
               <Form.Control
                 placeholder="Last Name"
-                className="signInputStyle"
+                required
+                name="lastname"
+                className={`signInputStyle ${
+                  invalidateField.lastname ? "invalidFieldStyle" : ""
+                }`}
+                onChange={handleUserInput}
               />
+              <div>
+                <small className="errorFormText">
+                  {invalidateField.lastname
+                    ? "must be at least three letters"
+                    : ""}
+                </small>
+              </div>
             </Form.Group>
 
             <Form.Group controlId="formBasicEmail">
@@ -53,15 +138,15 @@ export const SignUp = props => {
                 type="email"
                 placeholder="Enter email"
                 className={`signInputStyle ${
-                  invalidEmail ? "invalidFieldStyle" : ""
+                  invalidateField.email ? "invalidFieldStyle" : ""
                 }`}
-                value={email}
-                onChange={handleEmailValidation}
+                name="email"
+                onChange={handleUserInput}
                 required
               />
               <div>
                 <small className="errorFormText">
-                  {invalidEmail ? "must be a valid email" : ""}
+                  {invalidateField.email ? "must be a valid email" : ""}
                 </small>
               </div>
             </Form.Group>
@@ -70,21 +155,26 @@ export const SignUp = props => {
               <Form.Control
                 type="password"
                 placeholder="Password"
-                className="signInputStyle"
                 required
+                name="password"
+                className={`signInputStyle ${
+                  invalidateField.password ? "invalidFieldStyle" : ""
+                }`}
+                onChange={handleUserInput}
               />
+              <div>
+                <small className="errorFormText">
+                  {invalidateField.password
+                    ? "must be at least eight characters"
+                    : ""}
+                </small>
+              </div>
             </Form.Group>
-
-            <Form.Group controlId="formBasicConfirmPassword">
-              <Form.Control
-                type="password"
-                placeholder="Confirm Password"
-                className="signInputStyle"
-                required
-              />
-            </Form.Group>
-
-            <Button type="submit" className="submit-btnform">
+            <Button
+              type="submit"
+              className="submit-btnform"
+              disabled={invalidateField.formInvalid}
+            >
               Sign Up
             </Button>
           </Form>
