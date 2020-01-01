@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { SigIn } from "../Sign/SignIn";
 import "./NavBar.css";
 
 const NavBar = () => {
+  // to dislay the modal
+  const [modalShow, setModalShow] = useState(false);
+
   return (
     <>
       <ul className="nav">
@@ -38,7 +42,8 @@ const NavBar = () => {
           <i className="fas fa-search"></i>
         </li>
         <li>
-          <i className="far fa-user"></i>
+          <i className="far fa-user" onClick={() => setModalShow(true)}></i>
+          <SigIn show={modalShow} onHide={() => setModalShow(false)} />
         </li>
       </ul>
     </>

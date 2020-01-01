@@ -1,0 +1,106 @@
+.signInputStyle {
+  padding: 0.6em 2em;
+  border-radius: 35px !important;
+  width: 300px !important;
+  max-width: 250px !important;
+  cursor: pointer;
+  outline: none !important;
+  font-size: 13px !important;
+  background: #f0f4f7 !important;
+  border: none !important;
+}
+
+.modalHeaderStyle {
+  border-bottom: none !important;
+}
+
+.modalFooterStyle {
+  border-top: none !important;
+}
+
+.invalidFieldStyle {
+  border: 1px solid red !important;
+}
+
+.validFieldStyle {
+  border: 1px solid #6bca3e !important;
+}
+
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.errorFormText {
+  color: red;
+  font-size: 11px;
+}
+
+.submit-btnform {
+  padding: 0.6em 2em;
+  border-radius: 35px !important;
+  width: 300px;
+  font-size: 13px !important;
+  font-weight: bold !important;
+  max-width: 250px;
+  border: none !important;
+  cursor: pointer;
+  background-color: #902156 !important;
+}
+
+.submit-btnform:hover {
+  background: #ae2968 !important;
+}
+
+.forgotPass {
+  width: 100%;
+}
+
+.forgotPass > div {
+  font-size: 12px;
+  margin-bottom: 0.6rem;
+  color: #902156;
+  cursor: pointer;
+}
+
+.signupAcc {
+  margin: 1rem;
+  font-size: 12px;
+}
+
+.signupAcc > span {
+  color: #902156;
+  cursor: pointer;
+}
+
+.socialSignIn {
+  position: relative;
+}
+
+.socialSignIn > span {
+  position: absolute;
+  top: -8px;
+  left: 82px;
+  font-size: 12px;
+  padding: 0 5px;
+  background: white;
+}
+
+.socialSignInIcons i {
+  font-size: 25px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.fb {
+  color: #3b5998;
+}
+
+.twit {
+  color: #1da1f2;
+}
