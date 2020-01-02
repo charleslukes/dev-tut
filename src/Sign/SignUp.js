@@ -64,6 +64,7 @@ export const SignUp = props => {
 
   const onSubmitValue = e => {
     e.preventDefault();
+    props.onHide();
 
     if (Object.values(userInput).includes("")) {
       return;
