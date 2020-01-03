@@ -1,32 +1,38 @@
 import React, { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { SignUp } from "./SignUp";
+import { useMutation } from "@apollo/react-hooks";
+import { SIGNIN_USER } from "./mutations";
 import "./Sign.css";
 
 export const SigIn = props => {
-  const [email, setEmail] = useState("");
-  const [invalidEmail, setInvalidEmail] = useState(false);
-
+  const [signIn] = useMutation(SIGNIN_USER, {
+    onCompleted: data => {
+      console.log(data);
+    }
+  });
   //show the sign up modal
   const [modalShow, setModalShow] = useState(false);
 
-  const handleEmailValidation = event => {
-    const value = event.target.value;
-    setEmail(value);
+  const [userInput, setUserInput] = useState({
+    email: "",
+    password: ""
+  });
 
-    /* eslint-disable */
-    const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!regex.test(value)) {
-      setInvalidEmail(true);
-    }
-    if (regex.test(value)) {
-      setInvalidEmail(false);
-    }
+  const handleChange = event => {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    setUserInput({ ...userInput, [name]: value });
   };
 
-  const onSubmitValue = event => {
+  // function name should be unique from that of sign up
+  const onSubmitSignIn = event => {
     event.preventDefault();
-    alert(email);
+    console.log(userInput);
+
+    alert("hey");
+    signIn({ variables: userInput });
   };
 
   return (
@@ -44,24 +50,17 @@ export const SigIn = props => {
           {/* collect the user details */}
           <Form
             className="d-flex justify-content-center align-items-center flex-column"
-            onSubmit={onSubmitValue}
+            onSubmit={onSubmitSignIn}
           >
             <Form.Group controlId="formBasicEmail">
               <Form.Control
                 type="email"
                 placeholder="Enter email"
-                className={`signInputStyle ${
-                  invalidEmail ? "invalidFieldStyle" : ""
-                }`}
-                value={email}
-                onChange={handleEmailValidation}
+                className="signInputStyle"
+                onChange={handleChange}
+                name="email"
                 required
               />
-              <div>
-                <small className="errorFormText">
-                  {invalidEmail ? "must be a valid email" : ""}
-                </small>
-              </div>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
@@ -69,6 +68,8 @@ export const SigIn = props => {
                 type="password"
                 placeholder="Password"
                 className="signInputStyle"
+                onChange={handleChange}
+                name="password"
                 required
               />
             </Form.Group>
@@ -79,7 +80,7 @@ export const SigIn = props => {
               Sign In
             </Button>
             <div className="signupAcc">
-              Do not have an account?{" "}
+              Do not have an account?
               <span onClick={() => setModalShow(true)}>SignUp</span>
               <SignUp show={modalShow} onHide={() => setModalShow(false)} />
             </div>

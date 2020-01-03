@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
 import { emailRegex, nameRegex, passwordRegex } from "./validation";
-import { REGISTER_USER } from "./queries";
+import { REGISTER_USER } from "./mutations";
 import "./Sign.css";
 
 export const SignUp = props => {
-  const [login, { data, loading, error }] = useMutation(REGISTER_USER);
+  const [login] = useMutation(REGISTER_USER, {
+    onCompleted: data => {
+      console.log(data);
+    }
+  });
 
   const [userInput, setUserInput] = useState({
     email: "",
@@ -64,6 +68,7 @@ export const SignUp = props => {
 
   const onSubmitValue = e => {
     e.preventDefault();
+    props.onHide();
 
     if (Object.values(userInput).includes("")) {
       return;
@@ -74,7 +79,6 @@ export const SignUp = props => {
       for (const value in userInput) {
         if (value !== "country") userInput[value] = "";
       }
-      console.log(data, loading, error);
     }
   };
 
