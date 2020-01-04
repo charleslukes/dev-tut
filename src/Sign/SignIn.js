@@ -1,14 +1,23 @@
 import React, { useState } from "react";
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, Alert } from "react-bootstrap";
 import { SignUp } from "./SignUp";
 import { useMutation } from "@apollo/react-hooks";
 import { SIGNIN_USER } from "./mutations";
 import "./Sign.css";
 
 export const SigIn = props => {
+  const [showAlert, setShowAlert] = useState({
+    show: false,
+    message: ""
+  });
+
   const [signIn] = useMutation(SIGNIN_USER, {
     onCompleted: data => {
-      console.log(data);
+      setShowAlert({
+        ...showAlert,
+        show: true,
+        message: data.signInUser.message
+      });
     }
   });
   //show the sign up modal
@@ -23,15 +32,14 @@ export const SigIn = props => {
     const value = event.target.value;
     const name = event.target.name;
 
+    // remove the alert
+    setShowAlert({ ...showAlert, show: false });
     setUserInput({ ...userInput, [name]: value });
   };
 
   // function name should be unique from that of sign up
   const onSubmitSignIn = event => {
     event.preventDefault();
-    console.log(userInput);
-
-    alert("hey");
     signIn({ variables: userInput });
   };
 
@@ -52,6 +60,11 @@ export const SigIn = props => {
             className="d-flex justify-content-center align-items-center flex-column"
             onSubmit={onSubmitSignIn}
           >
+            {/* alerts the user for invalid credentials */}
+            <Alert show={showAlert.show} variant="success">
+              <small>{showAlert.message}</small>
+            </Alert>
+
             <Form.Group controlId="formBasicEmail">
               <Form.Control
                 type="email"
@@ -80,7 +93,7 @@ export const SigIn = props => {
               Sign In
             </Button>
             <div className="signupAcc">
-              Do not have an account?
+              Do not have an account?{" "}
               <span onClick={() => setModalShow(true)}>SignUp</span>
               <SignUp show={modalShow} onHide={() => setModalShow(false)} />
             </div>
